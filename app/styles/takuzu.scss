@@ -1,0 +1,123 @@
+@import 'variables';
+@import 'mixins';
+
+.takuzu {
+  .board {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 10px 20px;
+
+    &.board-size-4 {
+      .box {
+        width: calc(25% - 10px);
+        padding-bottom: calc(25% - 10px);
+
+        &.box-color-1,
+        &.box-color-2 {
+          padding-bottom: calc(25% - 10px - 7px);
+        }
+
+        &.box-color-1 {
+          box-shadow: 0 7px 0 darken($green, $border-percentage);
+        }
+
+        &.box-color-2 {
+          box-shadow: 0 7px 0 darken($red, $border-percentage);
+        }
+      }
+    }
+
+    &.board-size-6 {
+      .box {
+        width: calc(16.666% - 10px);
+        padding-bottom: calc(16.666% - 10px);
+
+        &.box-color-1,
+        &.box-color-2 {
+          padding-bottom: calc(16.666% - 10px - 6px);
+        }
+
+        &.box-color-1 {
+          box-shadow: 0 6px 0 darken($green, $border-percentage);
+        }
+
+        &.box-color-2 {
+          box-shadow: 0 6px 0 darken($red, $border-percentage);
+        }
+      }
+    }
+
+    &.board-size-8 {
+      .box {
+        width: calc(12.5% - 10px);
+        padding-bottom: calc(12.5% - 10px);
+
+        &.box-color-1,
+        &.box-color-2 {
+          padding-bottom: calc(12.5% - 10px - 5px);
+        }
+
+        &.box-color-1 {
+          box-shadow: 0 5px 0 darken($green, $border-percentage);
+        }
+
+        &.box-color-2 {
+          box-shadow: 0 5px 0 darken($red, $border-percentage);
+        }
+      }
+    }
+
+    &.board-size-10 {
+      .box {
+        width: calc(10% - 10px);
+        padding-bottom: calc(10% - 10px);
+
+        &.box-color-1,
+        &.box-color-2 {
+          padding-bottom: calc(10% - 10px - 4px);
+        }
+
+        &.box-color-1 {
+          box-shadow: 0 4px 0 darken($green, $border-percentage);
+        }
+
+        &.box-color-2 {
+          box-shadow: 0 4px 0 darken($red, $border-percentage);
+        }
+      }
+    }
+
+    .box {
+      border-radius: 16.666%;
+      display: inline-block;
+      vertical-align: top;
+      background: $disabled-color;
+      margin: 5px;
+      height: 0;
+      @include border-box;
+      @include disable-selection;
+      cursor: pointer;
+
+      &.box-color-1,
+      &.box-color-2 {
+        margin-bottom: 12px;
+      }
+
+      &.box-color-1 {
+        background: $green;
+      }
+
+      &.box-color-2 {
+        background: $red;
+      }
+    }
+  }
+
+  .submit {
+    padding-top: 20px;
+  }
+
+  .finish {
+    color: $primary-color;
+  }
+}

@@ -1,0 +1,57 @@
+@import 'variables';
+
+.container.home {
+  .box-container {
+    @include animation(fade-in, 300ms, forwards, cubic-bezier(0.8, 0.02, 0.45, 0.91));
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .home-list {
+      @include flexbox();
+
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      .home-list-item {
+        margin: 5px 10px;
+
+        a {
+          @include transition(all, 500ms, ease-in-out);
+
+          position: relative;
+
+          button {
+            margin: 0;
+            background: $primary-color;
+            box-shadow: 0 2px 0 darken($primary-color, $border-percentage);
+          }
+        }
+      }
+    }
+  }
+}
+
+@include keyframes(fade-in) {
+  0% {
+    @include transform(scale(0.8) rotateX(-40deg) translate(0, 60px));
+
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  70% {
+    @include transform(scale(1.05) rotateX(0) translate(0, -10px));
+  }
+
+  100% {
+    @include transform(scale(1) rotateX(0) translate(0, 0px));
+  }
+}

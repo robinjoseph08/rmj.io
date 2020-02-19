@@ -1,0 +1,80 @@
+@import 'variables';
+
+.regex {
+  .box-container {
+    form {
+      & > .input {
+        padding: 10px 20px 0 20px;
+      }
+
+      & > .help {
+        text-align: center;
+        font-size: 14px;
+        padding: 5px 20px 10px 20px;
+      }
+    }
+
+    .submit {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .finish {
+      color: $primary-color;
+      padding-top: 20px;
+    }
+  }
+
+  .status {
+    text-align: center;
+
+    & > div {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 5px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .words {
+    text-align: center;
+
+    ul {
+      text-align: left;
+      margin: 0;
+      list-style: none;
+      display: inline-block;
+      vertical-align: top;
+      padding: 5px 30px;
+
+      li {
+        color: $font-color;
+
+        .fa-check {
+          color: $green;
+          margin-right: 5px;
+          width: 1em;
+        }
+
+        .fa-times {
+          color: $red;
+          margin-right: 5px;
+          width: 1em;
+        }
+
+        span {
+          &.match {
+            color: $green;
+          }
+        }
+      }
+    }
+  }
+}

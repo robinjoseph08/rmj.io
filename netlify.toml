@@ -1,0 +1,10 @@
+[build]
+  command = "yarn build"
+  publish = "build"
+
+# Redirect all URLs to index.html for SPA
+# https://www.netlify.com/docs/redirects/#history-pushstate-and-single-page-apps
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
