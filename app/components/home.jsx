@@ -26,6 +26,11 @@ export const Home = () => (
           </Link>
         </li>
         <li className="home-list-item">
+          <a href="https://www.linkedin.com/in/robin-joseph-0207065b" rel="noopener noreferrer" target="_blank">
+            <button className="linkedin">linkedin</button>
+          </a>
+        </li>
+        <li className="home-list-item">
           <a href="https://github.com/robinjoseph08" rel="noopener noreferrer" target="_blank">
             <button className="github">github</button>
           </a>
