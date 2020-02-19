@@ -1,0 +1,10 @@
+{
+  "name": "rmj.io",
+  "version": "1.0.0",
+  "description": "Personal site",
+  "main": "app/index.js",
+  "repository": "https://github.com/robinjoseph08/rmj.io",
+  "author": "Robin Joseph",
+  "license": "MIT",
+  "private": true
+}
