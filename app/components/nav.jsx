@@ -6,7 +6,7 @@ export const Nav = () => (
       <Link to="/"><span>rmj.io</span></Link>
       <Link to="/regex"><span>regex</span></Link>
       <Link to="/takuzu"><span>takuzu</span></Link>
-      <Link to="/blog/"><span>blog</span></Link>
+      <a href="/blog/"><span>blog</span></a>
     </div>
   </nav>
 );
