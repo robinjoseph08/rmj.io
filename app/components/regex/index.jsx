@@ -1,7 +1,8 @@
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 
-import { HomeButton } from '../home-button';
-import { Word }       from './word';
+import { Footer } from '../footer';
+import { Nav }    from '../nav';
+import { Word }   from './word';
 
 const LOWEST_SCORE = 55;
 const LEVELS = [
@@ -27,6 +28,10 @@ export const Regex = () => {
   const [level, setLevel] = useState(0);
   const [score, setScore] = useState(0);
   const [guess, setGuess] = useState('');
+
+  useEffect(() => {
+    document.title = 'regex | rmj.io';
+  }, []);
 
   const regex = useMemo(() => {
     try {
@@ -82,73 +87,71 @@ export const Regex = () => {
 
   return (
     <Fragment>
-      <HomeButton />
-      <div className="container regex">
-        <div className="box-container">
-          <header>
-            <h1>regex</h1>
-            <p>Try to match the first six words completely while not matching any of the last six words at all.</p>
-            <p>When they all have checkmarks, you&apos;ve gotten it.</p>
-            <p>The shorter the regex, the lower the score, the better you are.</p>
-            <p>Currently, there are only {LEVELS.length} levels, and the lowest score I ever got was {LOWEST_SCORE}.</p>
-          </header>
-          <hr />
-          <div className="body-container">
-            <div className="status">
-              <div className="level-container">Level: {LEVELS[level] ? level + 1 : level}</div>
-              <div className="score-container">Score: {score}</div>
-            </div>
-            {level === LEVELS.length ?
-              <div className="finish">
-                <h3>Congratulations! You finished it with a score of {score}!</h3>
-              </div> :
-              <Fragment>
-                <div className="words">
-                  <ul className="left">
-                    {LEVELS[level].left.map((word) =>
-                      <Word
-                        key={word}
-                        regex={regex}
-                        side="left"
-                        word={word}
-                      />
-                    )}
-                  </ul>
-                  <ul className="right">
-                    {LEVELS[level].right.map((word) =>
-                      <Word
-                        key={word}
-                        regex={regex}
-                        side="right"
-                        word={word}
-                      />
-                    )}
-                  </ul>
-                </div>
-                <form onSubmit={handleSubmit}>
-                  <div className="input">
-                    <input
-                      autoCapitalize="none"
-                      autoComplete="off"
-                      className="code"
-                      onChange={handleChange}
-                      placeholder="Enter regex"
-                      type="text"
-                      value={guess}
-                    />
-                  </div>
-                  <div className="help">
-                    <p><em>You should omit any surrounding &apos;/&apos;s and any modifiers.</em></p>
-                  </div>
-                  <div className="submit">
-                    <button disabled={!completed}>next</button>
-                  </div>
-                </form>
-              </Fragment>
-            }
+      <Nav />
+      <div className="main regex">
+        <header>
+          <h1>regex</h1>
+          <div className="description">
+            Try to match the first six words completely while not matching any of the last six words at all. When they all have checkmarks, you&apos;ve gotten it. The shorter the regex, the lower the score, the better you are. Currently, there are only {LEVELS.length} levels, and the lowest score I ever got was {LOWEST_SCORE}.
           </div>
+        </header>
+        <hr />
+        <div className="body">
+          <div className="status">
+            <div className="level">Level: <b>{LEVELS[level] ? level + 1 : level}</b></div>
+            <div className="score">Score: <b>{score}</b></div>
+          </div>
+          {level === LEVELS.length ?
+            <div className="finish">
+              <h3>Congratulations! You finished it with a score of {score}!</h3>
+            </div> :
+            <Fragment>
+              <div className="words">
+                <ul className="left">
+                  {LEVELS[level].left.map((word) =>
+                    <Word
+                      key={word}
+                      regex={regex}
+                      side="left"
+                      word={word}
+                    />
+                  )}
+                </ul>
+                <ul className="right">
+                  {LEVELS[level].right.map((word) =>
+                    <Word
+                      key={word}
+                      regex={regex}
+                      side="right"
+                      word={word}
+                    />
+                  )}
+                </ul>
+              </div>
+              <form onSubmit={handleSubmit}>
+                <div className="input">
+                  <input
+                    autoCapitalize="none"
+                    autoComplete="off"
+                    className="code"
+                    onChange={handleChange}
+                    placeholder="Enter regex"
+                    type="text"
+                    value={guess}
+                  />
+                </div>
+                <div className="help">
+                  <p><em>You should omit any surrounding &apos;/&apos;s and any modifiers.</em></p>
+                </div>
+                <div className="submit">
+                  <button disabled={!completed}>next</button>
+                </div>
+              </form>
+            </Fragment>
+          }
         </div>
       </div>
+      <Footer />
     </Fragment>
   );
 };

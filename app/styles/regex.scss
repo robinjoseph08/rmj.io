@@ -1,80 +1,66 @@
-@import 'variables';
-
 .regex {
-  .box-container {
-    form {
-      & > .input {
-        padding: 10px 20px 0 20px;
-      }
-
-      & > .help {
-        text-align: center;
-        font-size: 14px;
-        padding: 5px 20px 10px 20px;
-      }
-    }
-
-    .submit {
-      text-align: center;
-      padding: 20px;
-    }
-
-    .finish {
-      color: $primary-color;
-      padding-top: 20px;
-    }
-  }
-
-  .status {
+  .body {
     text-align: center;
 
-    & > div {
-      display: inline-block;
-      vertical-align: middle;
-      margin: 0 5px;
+    .status {
+      @include flexbox();
 
-      &:first-child {
-        margin-left: 0;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1em;
+
+      .level {
+        margin-right: 5px;
       }
 
-      &:last-child {
-        margin-right: 0;
+      .score {
+        margin-left: 5px;
       }
     }
-  }
 
-  .words {
-    text-align: center;
+    .words {
+      @include flexbox();
 
-    ul {
-      text-align: left;
-      margin: 0;
-      list-style: none;
-      display: inline-block;
-      vertical-align: top;
-      padding: 5px 30px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1em;
 
-      li {
-        color: $font-color;
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 5px 30px;
+        text-align: left;
 
-        .fa-check {
-          color: $green;
-          margin-right: 5px;
-          width: 1em;
-        }
+        li {
+          color: $cod-gray;
 
-        .fa-times {
-          color: $red;
-          margin-right: 5px;
-          width: 1em;
-        }
+          .fa-check {
+            color: $shamrock;
+            margin-right: 5px;
+            width: 1em;
+          }
 
-        span {
-          &.match {
-            color: $green;
+          .fa-times {
+            color: $cinnabar;
+            margin-right: 5px;
+            width: 1em;
+          }
+
+          span {
+            &.match {
+              color: $shamrock;
+            }
           }
         }
       }
+    }
+
+    .help {
+      font-size: 14px;
+    }
+
+    .finish {
+      color: $curious-blue;
     }
   }
 }

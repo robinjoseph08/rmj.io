@@ -1,46 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Fragment }     from 'react';
+import { OutboundLink } from 'react-ga';
+
+import { Footer } from './footer';
+import { Nav }    from './nav';
 
 export const Home = () => (
-  <div className="container home">
-    <div className="box-container">
-      <h1>Robin Joseph</h1>
-      <ul className="home-list">
-        <li className="home-list-item">
-          <a href="https://interviewplanner.com" rel="noopener noreferrer" target="_blank">
-            <button className="interviewplanner">interviewplanner</button>
-          </a>
-        </li>
-        <li className="home-list-item">
-          <a href="https://pokedextracker.com" rel="noopener noreferrer" target="_blank">
-            <button className="pokedextracker">pokedextracker</button>
-          </a>
-        </li>
-        <li className="home-list-item">
-          <Link to="/regex">
-            <button className="regex">regex</button>
-          </Link>
-        </li>
-        <li className="home-list-item">
-          <Link to="/takuzu">
-            <button className="takuzu">takuzu</button>
-          </Link>
-        </li>
-        <li className="home-list-item">
-          <a href="https://www.linkedin.com/in/robin-joseph-0207065b" rel="noopener noreferrer" target="_blank">
-            <button className="linkedin">linkedin</button>
-          </a>
-        </li>
-        <li className="home-list-item">
-          <a href="https://github.com/robinjoseph08" rel="noopener noreferrer" target="_blank">
-            <button className="github">github</button>
-          </a>
-        </li>
-        <li className="home-list-item">
-          <a href="https://www.twitter.com/robinjoseph08" rel="noopener noreferrer" target="_blank">
-            <button className="twitter">twitter</button>
-          </a>
-        </li>
-      </ul>
+  <Fragment>
+    <Nav />
+    <div className="main home">
+      <div className="container">
+        <img className="image" src="/app/assets/images/me.jpg" />
+        <div className="info">
+          <h1>robin joseph</h1>
+          <h2>
+            co-founder of <OutboundLink eventLabel="Home Page - InterviewPlanner" target="_blank" to="https://interviewplanner.com">interviewplanner</OutboundLink><br />
+            co-creator of <OutboundLink eventLabel="Home Page - PokedexTracker" target="_blank" to="https://pokedextracker.com">pokedextracker</OutboundLink>
+          </h2>
+        </div>
+      </div>
     </div>
-  </div>
+    <Footer />
+  </Fragment>
 );

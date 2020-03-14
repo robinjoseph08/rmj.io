@@ -2,6 +2,12 @@
   command = "yarn build"
   publish = "build"
 
+# Redirect to blog
+[[redirects]]
+  from = "/blog*"
+  to = "https://rmj-blog.netlify.com/:splat"
+  status = 200
+
 # Redirect all URLs to index.html for SPA
 # https://www.netlify.com/docs/redirects/#history-pushstate-and-single-page-apps
 [[redirects]]
