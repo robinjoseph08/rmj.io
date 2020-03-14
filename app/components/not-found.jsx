@@ -1,7 +1,14 @@
+import { Fragment } from 'react';
+
+import { Footer } from "./footer";
+import { Nav }    from "./nav";
+
 export const NotFound = () => (
-  <div className="container">
-    <div className="box-container">
-      <h1>Page Not Found</h1>
+  <Fragment>
+    <Nav />
+    <div className="main not-found">
+      <h1>whoops, that's not a real page</h1>
     </div>
-  </div>
+    <Footer />
+  </Fragment>
 );

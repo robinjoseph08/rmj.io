@@ -1,8 +1,9 @@
 import cloneDeep                       from 'lodash/cloneDeep';
 import { Fragment, useMemo, useState } from 'react';
 
-import { Board }      from './board';
-import { HomeButton } from '../home-button';
+import { Board }  from './board';
+import { Footer } from '../footer';
+import { Nav }    from '../nav';
 
 // 0s are empty, 1s are green, 2s are red
 const LEVELS = [
@@ -143,34 +144,41 @@ export const Takuzu = () => {
 
   return (
     <Fragment>
-      <HomeButton />
-      <div className="container takuzu">
-        <div className="box-container">
-          <header>
-            <h1>takuzu</h1>
-            <p>The binary logic game. The rules are simple:</p>
-            <p>1. Each row and each column should contain an equal number of red and green boxes.</p>
-            <p>2. No more than two of the same color box can be adjacent to each other.</p>
-            <p>3. And each row and column is unique.</p>
-            <p>There are currently {LEVELS.length} levels, and they progressively get harder.</p>
-          </header>
-          <hr />
-          <div className="body-container">
-            {!board ?
-              <div className="finish">
-                <h3>Congratulations! You finished all of the available boards!</h3>
-              </div> :
-              <Fragment>
-                <Board board={board} toggleBox={toggleBox} />
-                <div className="submit">
-                  {completed && incorrect > 0 && <p><em>Looks like you&apos;ve got {incorrect} that {incorrect === 1 ? 'is' : 'are'} incorrect.</em></p>}
-                  <button disabled={!completed || incorrect > 0} onClick={handleSubmit}>next</button>
-                </div>
-              </Fragment>
-            }
+      <Nav />
+      <div className="main takuzu">
+        <header>
+          <h1>takuzu</h1>
+          <div className="description">
+            The binary logic game. The rules are simple:
+            <ol>
+              <li>Each row and each column should contain an equal number of red and green boxes.</li>
+              <li>No more than two of the same color box can be adjacent to each other.</li>
+              <li>And each row and column is unique.</li>
+            </ol>
+            There are currently {LEVELS.length} levels, and they progressively get harder.
           </div>
+        </header>
+        <hr />
+        <div className="body">
+          {!board ?
+            <div className="finish">
+              <h3>Congratulations! You finished all of the available boards!</h3>
+            </div> :
+            <Fragment>
+              <Board board={board} toggleBox={toggleBox} />
+              {completed && incorrect > 0 &&
+                <div className="help">
+                  <p><em>Looks like you&apos;ve got {incorrect} that {incorrect === 1 ? 'is' : 'are'} incorrect.</em></p>
+                </div>
+              }
+              <div className="submit">
+                <button disabled={!completed || incorrect > 0} onClick={handleSubmit}>next</button>
+              </div>
+            </Fragment>
+          }
         </div>
       </div>
+      <Footer />
     </Fragment>
   );
 };
