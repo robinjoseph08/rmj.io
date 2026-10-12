@@ -1,0 +1,22 @@
+---
+import Heading from '../components/Heading.astro';
+import Link    from '../components/Link.astro';
+import Base    from '../layouts/Base.astro';
+---
+<Base mainClass="flex">
+  <div class="flex w-full flex-col items-center justify-center sm:flex-row">
+    <img
+      alt="Robin Joseph"
+      class="mb-[1em] box-content max-w-[200px] rounded-[50%] border-2 border-cod-gray sm:mr-[2em] sm:mb-0"
+      src="/app/assets/images/me.jpg"
+    />
+    <div class="text-center sm:text-left">
+      <Heading class="sm:mt-0">robin joseph</Heading>
+      <h2 class="my-[0.83em] text-[1em] sm:mb-0">
+        co-founder of <Link external href="https://interviewplanner.com">interviewplanner</Link> (acquired by gem)<br />
+        co-creator of <Link external href="https://pokedextracker.com">pokedextracker</Link><br />
+        creator of <Link external href="https://www.shishobooks.com/">shisho</Link>
+      </h2>
+    </div>
+  </div>
+</Base>

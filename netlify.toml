@@ -1,16 +1,28 @@
 [build]
-  command = "yarn build"
+  command = "pnpm build"
   publish = "build"
 
-# Redirect to blog
-[[redirects]]
-  from = "/blog*"
-  to = "https://rmj-blog.netlify.com/:splat"
-  status = 200
+# Netlify doesn't read mise.toml, so keep this in sync with it.
+[build.environment]
+  NODE_VERSION = "24.21.0"
 
-# Redirect all URLs to index.html for SPA
-# https://www.netlify.com/docs/redirects/#history-pushstate-and-single-page-apps
+# URLs the old Hugo blog generated that don't exist anymore.
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "/blog/sitemap.xml"
+  to = "/sitemap-index.xml"
+
+[[redirects]]
+  from = "/blog/posts/index.xml"
+  to = "/blog/index.xml"
+
+[[redirects]]
+  from = "/blog/tags/index.xml"
+  to = "/blog/index.xml"
+
+[[redirects]]
+  from = "/blog/tags/*/index.xml"
+  to = "/blog/index.xml"
+
+[[redirects]]
+  from = "/blog/page/*"
+  to = "/blog/"

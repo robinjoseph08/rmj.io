@@ -1,0 +1,23 @@
+---
+import type { GetStaticPaths } from 'astro';
+
+import PostSummary                                                  from '../../../components/blog/PostSummary.astro';
+import Heading                                                      from '../../../components/Heading.astro';
+import Base                                                         from '../../../layouts/Base.astro';
+import { BLOG_DESCRIPTION, BLOG_IMAGE, getPosts, getTags, tagSlug } from '../../../lib/blog';
+
+export const getStaticPaths = (async () => {
+  return [...getTags(await getPosts())].map(([tag, posts]) => ({
+    params: { tag: tagSlug(tag) },
+    props: { posts, tag }
+  }));
+}) satisfies GetStaticPaths;
+
+const { posts, tag } = Astro.props;
+---
+<Base description={BLOG_DESCRIPTION} image={BLOG_IMAGE} title={tag}>
+  <header>
+    <Heading>{tag}</Heading>
+  </header>
+  {posts.map((post) => <PostSummary post={post} />)}
+</Base>

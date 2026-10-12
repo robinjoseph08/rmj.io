@@ -1,0 +1,19 @@
+---
+import Link                                                                  from '../../components/Link.astro';
+import PostSummary                                                           from '../../components/blog/PostSummary.astro';
+import Base                                                                  from '../../layouts/Base.astro';
+import { BLOG_DESCRIPTION, BLOG_IMAGE, BLOG_SUBTITLE, BLOG_TITLE, getPosts } from '../../lib/blog';
+
+const posts = (await getPosts()).slice(0, 10);
+---
+<Base description={BLOG_DESCRIPTION} image={BLOG_IMAGE} title="blog">
+  <header class="my-[4em]">
+    <h1 class="text-[2em] font-bold">{BLOG_TITLE}</h1>
+    <div>{BLOG_SUBTITLE}</div>
+  </header>
+  <h2 class="my-[0.83em] text-[1.5em] font-bold">Recent Posts</h2>
+  <div>
+    {posts.map((post) => <PostSummary post={post} />)}
+  </div>
+  <p class="my-[2em]">See <Link href="/blog/posts/">all posts</Link> or browse by <Link href="/blog/tags/">tag</Link>.</p>
+</Base>

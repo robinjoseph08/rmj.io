@@ -1,0 +1,17 @@
+---
+import PageHeader         from '../components/PageHeader.astro';
+import { LEVELS, Takuzu } from '../components/takuzu/Takuzu';
+import Base               from '../layouts/Base.astro';
+---
+<Base title="takuzu">
+  <PageHeader title="takuzu">
+    The binary logic game. The rules are simple:
+    <ol class="my-[1em] list-decimal pl-[40px]">
+      <li>Each row and each column should contain an equal number of red and green boxes.</li>
+      <li>No more than two of the same color box can be adjacent to each other.</li>
+      <li>And each row and column is unique.</li>
+    </ol>
+    There are currently {LEVELS.length} levels, and they progressively get harder.
+  </PageHeader>
+  <Takuzu client:load />
+</Base>

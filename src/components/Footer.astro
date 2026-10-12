@@ -1,0 +1,23 @@
+---
+import { faLinkedin, faSquareGithub, faSquareTwitter } from '@fortawesome/free-brands-svg-icons';
+
+import Icon from './Icon.astro';
+
+const LINKS = [
+  { href: 'https://www.linkedin.com/in/robin-joseph-0207065b', icon: faLinkedin },
+  { href: 'https://github.com/robinjoseph08', icon: faSquareGithub },
+  { href: 'https://twitter.com/robinjoseph08', icon: faSquareTwitter }
+];
+---
+<footer class="text-[20px]">
+  <div class="mx-auto my-[1em] flex max-w-content items-center justify-center">
+    {LINKS.map(({ href, icon }, i) => (
+      <>
+        {i > 0 && <span class="mx-[.75em] text-[16px] select-none [-webkit-tap-highlight-color:transparent]">·</span>}
+        <a class="hover:text-curious-blue" href={href} rel="noopener noreferrer" target="_blank">
+          <Icon icon={icon} />
+        </a>
+      </>
+    ))}
+  </div>
+</footer>

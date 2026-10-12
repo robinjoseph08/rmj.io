@@ -1,0 +1,11 @@
+---
+import PageHeader                      from '../components/PageHeader.astro';
+import { LEVELS, LOWEST_SCORE, Regex } from '../components/regex/Regex';
+import Base                            from '../layouts/Base.astro';
+---
+<Base title="regex">
+  <PageHeader title="regex">
+    Try to match the first six words completely while not matching any of the last six words at all. When they all have checkmarks, you've gotten it. The shorter the regex, the lower the score, the better you are. Currently, there are only {LEVELS.length} levels, and the lowest score I ever got was {LOWEST_SCORE}.
+  </PageHeader>
+  <Regex client:load />
+</Base>
