@@ -1,0 +1,4 @@
+# Keep pnpm in sync with packageManager in package.json, which Netlify uses.
+[tools]
+node = "24.21.0"
+pnpm = "12.12.1"

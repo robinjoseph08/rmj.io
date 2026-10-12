@@ -1,0 +1,24 @@
+---
+import { formatDate, type Post, readingTime, tagUrl } from '../../lib/blog';
+import Link                                           from '../Link.astro';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+
+const GROUP_CLASS_NAME = 'mb-[1em] flex items-center last:mb-0';
+const ITEM_CLASS_NAME = 'mr-[.5em] after:ml-[.5em] after:content-["·"] last:after:content-none';
+---
+<div class="flex flex-col text-[14px]">
+  <div class={GROUP_CLASS_NAME}>
+    <div class={ITEM_CLASS_NAME}>{formatDate(post.data.date)}</div>
+    <div class={ITEM_CLASS_NAME}>{readingTime(post)}</div>
+  </div>
+  <div class={GROUP_CLASS_NAME}>
+    {post.data.tags.map((tag) => (
+      <div class={ITEM_CLASS_NAME}><Link href={tagUrl(tag)}>{tag.toLowerCase()}</Link></div>
+    ))}
+  </div>
+</div>

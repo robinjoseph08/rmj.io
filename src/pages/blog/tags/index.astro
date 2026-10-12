@@ -1,0 +1,14 @@
+---
+import List                                                        from '../../../components/blog/List.astro';
+import Base                                                        from '../../../layouts/Base.astro';
+import { BLOG_DESCRIPTION, BLOG_IMAGE, getPosts, getTags, tagUrl } from '../../../lib/blog';
+
+const items = [...getTags(await getPosts())].map(([tag, posts]) => ({
+  descriptor: `${posts.length} post${posts.length === 1 ? '' : 's'}`,
+  href: tagUrl(tag),
+  title: tag
+}));
+---
+<Base description={BLOG_DESCRIPTION} image={BLOG_IMAGE} title="Tags">
+  <List items={items} title="Tags" />
+</Base>

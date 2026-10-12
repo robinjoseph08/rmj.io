@@ -1,0 +1,21 @@
+---
+import { type Post, postUrl } from '../../lib/blog';
+import Link                   from '../Link.astro';
+import PostMeta               from './PostMeta.astro';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+---
+<div>
+  <div>
+    <h3 class="my-[1em] text-[1.17em] font-bold"><Link href={postUrl(post)}>{post.data.title}</Link></h3>
+    <PostMeta post={post} />
+  </div>
+  <p class="my-[1em]">{post.data.description}</p>
+  <div>
+    <Link class="whitespace-nowrap" href={postUrl(post)}>Read more →</Link>
+  </div>
+</div>

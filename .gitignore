@@ -153,7 +153,7 @@ Sessionx.vim
 *~
 
 # Auto-generated tag files
-tags
+/tags
 
 # Persistent undo
 [._]*.un~
@@ -162,3 +162,9 @@ tags
 .vim
 
 # End of https://www.gitignore.io/api/vim,macos,node
+
+# Build output
+/build
+
+# Astro
+.astro/

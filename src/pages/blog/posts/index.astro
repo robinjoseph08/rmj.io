@@ -1,0 +1,14 @@
+---
+import List                                                                 from '../../../components/blog/List.astro';
+import Base                                                                 from '../../../layouts/Base.astro';
+import { BLOG_DESCRIPTION, BLOG_IMAGE, formatShortDate, getPosts, postUrl } from '../../../lib/blog';
+
+const items = (await getPosts()).map((post) => ({
+  descriptor: formatShortDate(post.data.date),
+  href: postUrl(post),
+  title: post.data.title
+}));
+---
+<Base description={BLOG_DESCRIPTION} image={BLOG_IMAGE} title="Posts">
+  <List items={items} title="Posts" />
+</Base>

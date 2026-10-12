@@ -1,0 +1,82 @@
+---
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import type { GetStaticPaths }           from 'astro';
+import { render }                        from 'astro:content';
+
+import PostMeta                          from '../../../components/blog/PostMeta.astro';
+import Heading                           from '../../../components/Heading.astro';
+import Icon                              from '../../../components/Icon.astro';
+import Link                              from '../../../components/Link.astro';
+import Base                              from '../../../layouts/Base.astro';
+import { BLOG_IMAGE, getPosts, postUrl } from '../../../lib/blog';
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    // Posts are sorted newest first.
+    props: { newer: posts[i - 1], older: posts[i + 1], post }
+  }));
+}) satisfies GetStaticPaths;
+
+const { newer, older, post } = Astro.props;
+const { Content } = await render(post);
+
+const image = post.data.image ?? BLOG_IMAGE;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  name: post.data.title,
+  author: {
+    '@type': 'Person',
+    name: 'Robin Joseph'
+  },
+  datePublished: post.data.date.toISOString(),
+  image: new URL(image, Astro.site).href,
+  articleBody: post.data.description,
+  url: new URL(postUrl(post), Astro.site).href
+};
+
+const NAV_LINK_CLASS_NAME = 'flex items-center hover:text-curious-blue';
+---
+<Base description={post.data.description} image={image} title={post.data.title}>
+  <script is:inline set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')} slot="head" type="application/ld+json" />
+  <header>
+    <Heading>{post.data.title}</Heading>
+    <PostMeta post={post} />
+    <hr class="my-[2em] h-px border-none bg-silver" />
+  </header>
+  <article class="post-content">
+    <Content />
+  </article>
+  <div class="mx-[1em] my-[3em] flex flex-col items-center border-2 border-silver p-[2em] text-center sm:m-[3em] sm:flex-row sm:text-left">
+    <img alt="Robin Joseph" class="mb-[2em] box-content w-[100px] rounded-[50%] border-2 border-cod-gray sm:mr-[2em] sm:mb-0" src="/app/assets/images/me.jpg" />
+    <div>
+      Robin is the co-founder of <Link external href="https://interviewplanner.com">InterviewPlanner</Link> (acquired by Gem), the co-creator of <Link external href="https://pokedextracker.com">PokédexTracker</Link>, and the creator of <Link external href="https://www.shishobooks.com/">Shisho</Link>. To stay up-to-date on new posts, follow him on <Link external href="https://twitter.com/robinjoseph08">Twitter</Link>.
+    </div>
+  </div>
+  <div class="flex">
+    <div class="flex-1 text-left">
+      {older && (
+        <a class={NAV_LINK_CLASS_NAME} href={postUrl(older)}>
+          <Icon class="w-auto" icon={faChevronLeft} />
+          <div class="ml-[1em] flex grow flex-col">
+            <span><b>previous post</b></span>
+            <span>{older.data.title}</span>
+          </div>
+        </a>
+      )}
+    </div>
+    <div class="flex-1 text-right">
+      {newer && (
+        <a class={NAV_LINK_CLASS_NAME} href={postUrl(newer)}>
+          <div class="mr-[1em] flex grow flex-col">
+            <span><b>next post</b></span>
+            <span>{newer.data.title}</span>
+          </div>
+          <Icon class="w-auto" icon={faChevronRight} />
+        </a>
+      )}
+    </div>
+  </div>
+</Base>

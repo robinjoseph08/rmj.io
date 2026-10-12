@@ -1,0 +1,12 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'> & {
+  // Opens the link in a new tab.
+  external?: boolean;
+};
+
+const { class: className = '', external = false, ...props } = Astro.props;
+const externalProps = external ? { rel: 'noopener noreferrer', target: '_blank' } : {};
+---
+<a class={`text-curious-blue underline hover:text-curious-blue-dark ${className}`} {...externalProps} {...props}><slot /></a>

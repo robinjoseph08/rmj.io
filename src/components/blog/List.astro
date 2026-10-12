@@ -1,0 +1,22 @@
+---
+import Heading from '../Heading.astro';
+import Link    from '../Link.astro';
+
+interface Props {
+  items: { descriptor: string; href: string; title: string }[];
+  title: string;
+}
+
+const { items, title } = Astro.props;
+---
+<header>
+  <Heading>{title}</Heading>
+</header>
+<ul class="my-[1em]">
+  {items.map(({ descriptor, href, title }) => (
+    <li class="mb-[.5em] flex items-center">
+      <div class="mr-[1em] font-bold"><Link href={href}>{title}</Link></div>
+      <div class="whitespace-nowrap">{descriptor}</div>
+    </li>
+  ))}
+</ul>

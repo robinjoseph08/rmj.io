@@ -1,0 +1,146 @@
+@import 'tailwindcss';
+/* FontAwesome's CSS is unlayered by default, which would beat every utility. */
+@import '@fortawesome/fontawesome-svg-core/styles.css' layer(base);
+@import '@fontsource/source-code-pro/400.css';
+
+/* The site used to use Source Sans Pro. Source Sans 3 is its successor, but it
+   has taller vertical metrics, so these overrides give it Source Sans Pro's
+   metrics to keep line heights the same. */
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2') format('woff2');
+  ascent-override: 98.4%;
+  descent-override: 27.3%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/source-sans-3/files/source-sans-3-latin-400-italic.woff2') format('woff2');
+  ascent-override: 98.4%;
+  descent-override: 27.3%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@fontsource/source-sans-3/files/source-sans-3-latin-700-normal.woff2') format('woff2');
+  ascent-override: 98.4%;
+  descent-override: 27.3%;
+  line-gap-override: 0%;
+}
+
+@theme {
+  --font-sans: 'Source Sans 3', Helvetica, Arial, sans-serif;
+  --font-mono: 'Source Code Pro', monospace;
+
+  --color-alabaster: #f9f9f9;
+  --color-silver: #cccccc;
+  --color-silver-chalice: #aaaaaa;
+  --color-cod-gray: #111111;
+  --color-curious-blue: #3498db;
+  --color-curious-blue-dark: #2386c8;
+  --color-cinnabar: #e74c3c;
+  --color-shamrock: #2ecc71;
+
+  --container-content: 800px;
+
+  /* The layout used to switch at max-width: 550px. */
+  --breakpoint-sm: 551px;
+}
+
+/* Rendered markdown can't take utility classes, so blog posts get the browser's
+   default element styles back (which preflight removes) plus a few tweaks. */
+@layer components {
+  .post-content {
+    & p {
+      margin-block: 1em;
+    }
+
+    & h2 {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-block: 0.83em;
+    }
+
+    & h3 {
+      font-size: 1.17em;
+      font-weight: bold;
+      margin-block: 1em;
+    }
+
+    & ul,
+    & ol {
+      margin-block: 1em;
+      padding-left: 40px;
+    }
+
+    & ul {
+      list-style: disc;
+    }
+
+    & ol {
+      list-style: decimal;
+    }
+
+    & :is(ul, ol) :is(ul, ol) {
+      margin-block: 0;
+    }
+
+    & :is(ul, ol) ul {
+      list-style: circle;
+    }
+
+    & a {
+      color: var(--color-curious-blue);
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--color-curious-blue-dark);
+      }
+    }
+
+    & img {
+      display: inline;
+      vertical-align: baseline;
+      width: 100%;
+    }
+
+    & code {
+      background-color: var(--color-alabaster);
+      border: 1px solid var(--color-silver);
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      margin: 0 2px;
+      padding: 0 5px;
+      white-space: nowrap;
+    }
+
+    & pre {
+      border: 1px solid var(--color-silver);
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      line-height: 19px;
+      margin-block: 1em;
+      overflow: auto;
+      padding: 6px 10px;
+
+      & code {
+        background: transparent;
+        border: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
